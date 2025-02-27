@@ -69,13 +69,13 @@ cd my-task-manager
 2. Install dependencies:
 
 npm install
-# or
+or
 yarn
 
 3. Start the development server:
 
 npm run dev
-# or
+or
 yarn dev
 
 4. Open your browser and navigate to http://localhost:5173
@@ -85,7 +85,7 @@ yarn dev
 To create an optimized production build:
 
 npm run build
-# or
+or
 yarn build
 
 The build output will be located in the dist directory.

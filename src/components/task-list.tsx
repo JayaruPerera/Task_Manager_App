@@ -1,14 +1,15 @@
-import { Card, List, Tag, Button, Space} from "antd";
-import { EditOutlined } from "@ant-design/icons";
+import { Card, List, Tag, Button, Space, Popconfirm} from "antd";
+import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import "./task-list-component.css";
 import { Link } from "react-router-dom";
 import { Task } from "../types/task";
 
 interface TaskListProps {
   tasks: Task[];
+  onDeleteTask: (id: number) => void;
 }
 
-const TaskList: React.FC<TaskListProps> = ({ tasks }) => {
+const TaskList: React.FC<TaskListProps> = ({ tasks, onDeleteTask }) => {
 
   return (
     <div>
@@ -37,6 +38,22 @@ const TaskList: React.FC<TaskListProps> = ({ tasks }) => {
                         Edit
                       </Button>
                     </Link>
+                    <Popconfirm
+                      title="Delete Task"
+                      description="Are you sure you want to delete this task?"
+                      onConfirm={() => onDeleteTask(task.id)}
+                      okText="Yes"
+                      cancelText="No"
+                    >
+                      <Button 
+                        type="primary" 
+                        danger
+                        icon={<DeleteOutlined />} 
+                        size="small"
+                      >
+                        Delete
+                      </Button>
+                    </Popconfirm>
                   </Space>
                 }
               >

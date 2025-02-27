@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Form, Input, Button, DatePicker } from "antd";
+import dayjs from 'dayjs';
 import type { Dayjs } from "dayjs";                                           //a date library used to handle and format dates.The DatePicker component from Ant Design returns a Dayjs object.
 
 interface TaskFormValues {                                                    //Represents the raw form input values captured directly from the form
@@ -16,10 +17,31 @@ interface TaskFormData {                                                     //R
 
 interface TaskFormProps {                                                   //Defines the props that will be passed to the TaskForm component.
   onSubmit: (values: TaskFormData) => void;                                 //A function that receives TaskFormData and is called when the form is submitted.
+  initialValues?: {
+    title: string;
+    description: string;
+    dueDate: string;
+  };
+  isSubmitting?: boolean;
+  submitButtonText?: string;
 }
 
-const TaskForm: React.FC<TaskFormProps> = ({ onSubmit }) => {
-  const [form] = Form.useForm();                                          //This allows us to reset the form after submission
+const TaskForm: React.FC<TaskFormProps> = ({ 
+  onSubmit,
+  initialValues,
+  isSubmitting = false,
+  submitButtonText = "Add Task"
+}) => {
+  const [form] = Form.useForm();   
+  
+  useEffect(() => {
+    if (initialValues) {
+      form.setFieldsValue({
+        ...initialValues,
+        dueDate: dayjs(initialValues.dueDate)
+      });
+    }
+  }, [initialValues, form]);//This allows us to reset the form after submission
 
   const handleFinish = (values: TaskFormValues) => {
     const taskData: TaskFormData = {
@@ -28,7 +50,7 @@ const TaskForm: React.FC<TaskFormProps> = ({ onSubmit }) => {
       dueDate: values.dueDate.format("YYYY-MM-DD"),
     };
     onSubmit(taskData);                                                  //passing taskData to add-task.tsx
-    form.resetFields();
+    // form.resetFields();
   };
 
   return (
@@ -58,7 +80,9 @@ const TaskForm: React.FC<TaskFormProps> = ({ onSubmit }) => {
       </Form.Item>
 
       <Form.Item>
-        <Button type="primary" htmlType="submit">Add Task</Button>
+        <Button type="primary" htmlType="submit" loading={isSubmitting}>
+        {submitButtonText}
+        </Button>
       </Form.Item>
     </Form>
   );

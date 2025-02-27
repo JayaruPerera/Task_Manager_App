@@ -2,6 +2,7 @@ import { Routes, Route } from 'react-router-dom'
 import TaskList from './pages/task-list'
 import AddTask from './pages/add-task'
 import { Layout } from 'antd'
+import './App.css';
 
 const { Content } = Layout;
 
@@ -14,6 +15,7 @@ function App() {
       <Routes>
         <Route path="/" element={<TaskList />} />
         <Route path="/add-task" element={<AddTask />} />
+        <Route path="/edit-task/:id" element={<AddTask />} />
       </Routes>
       </div>
       </Content>

@@ -1,5 +1,8 @@
-import { Card, List, Tag,} from "antd";
+import { Card, List, Tag, Button, Space} from "antd";
+import { EditOutlined } from "@ant-design/icons";
 import "./task-list-component.css";
+import { Link } from "react-router-dom";
+import { Task } from "../types/task";
 
 interface TaskListProps {
   tasks: Task[];
@@ -23,7 +26,18 @@ const TaskList: React.FC<TaskListProps> = ({ tasks }) => {
               className="task-item-card"
                 title={task.title}
                 extra={
-                  <Tag color="blue">Due: {task.dueDate}</Tag>
+                  <Space>
+                    <Tag color="blue">Due: {task.dueDate}</Tag>
+                    <Link to={`/edit-task/${task.id}`}>
+                      <Button 
+                        type="primary" 
+                        icon={<EditOutlined />} 
+                        size="small"
+                      >
+                        Edit
+                      </Button>
+                    </Link>
+                  </Space>
                 }
               >
                 <p className="task-description">{task.description}</p>

@@ -1,0 +1,31 @@
+.task-items-list {
+  width: 100%;
+}
+
+.task-item {
+  margin-bottom: 16px;
+}
+
+.task-item:last-child {
+  margin-bottom: 0;
+}
+
+.task-item-card {
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+}
+
+.task-item-card:hover {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+}
+
+.task-description {
+  margin-bottom: 16px;
+}
+
+.task-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}

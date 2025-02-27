@@ -3,60 +3,60 @@
 A comprehensive task management application built with React, TypeScript, and Redux Toolkit.
 
 <h2>Features</h2>
-✅ Create new tasks with title, description, and due date
-✅ View all tasks in a clean, organized list
-✅ Edit existing tasks
-✅ Delete tasks
+✅ Create new tasks with title, description, and due date <br>
+✅ View all tasks in a clean, organized list<br>
+✅ Edit existing tasks<br>
+✅ Delete tasks<br>
 ✅ Task status tracking (completed/pending)
 
 <h2>Technologies Used</h2>
 
-⏺️React 18 with TypeScript for UI components
-⏺️Vite for fast development and optimized builds
-⏺️Redux Toolkit for state management
-⏺️React Router for navigation between pages
+⏺️React 18 with TypeScript for UI components<br>
+⏺️Vite for fast development and optimized builds<br>
+⏺️Redux Toolkit for state management<br>
+⏺️React Router for navigation between pages<br>
 ⏺️Ant Design for UI components
 
 <h2>Project Structure</h2>
 
-/src
-  /components        # Reusable UI components
-    task-form.tsx    # Form for adding/editing tasks
-    task-list.tsx    # Component to display list of tasks
-  /pages             # Route-level components
-    task-list.tsx    # Main page showing all tasks
-    add-task.tsx     # Page for adding and editing tasks
-  /store             # Redux store setup
-    index.ts         # Store configuration
-    taskSlice.ts     # Task-related reducers and actions
-  /types             # TypeScript type definitions
-    task.ts          # Task interface
-  /styles            # CSS files
-  App.tsx            # Main application component
-  main.tsx           # Application entry point
+/src<br>
+  /components        # Reusable UI components<br>
+    task-form.tsx    # Form for adding/editing tasks<br>
+    task-list.tsx    # Component to display list of tasks<br>
+  /pages             # Route-level components<br>
+    task-list.tsx    # Main page showing all tasks<br>
+    add-task.tsx     # Page for adding and editing tasks<br>
+  /store             # Redux store setup<br>
+    index.ts         # Store configuration<br>
+    taskSlice.ts     # Task-related reducers and actions<br>
+  /types             # TypeScript type definitions<br>
+    task.ts          # Task interface<br>
+  /styles            # CSS files<br>
+  App.tsx            # Main application component<br>
+  main.tsx           # Application entry point<br>
 
 <h2>Core Functionality</h2>
 
 <h3>Task Management</h3>
 
-⏺️Add Task: Create new tasks with title, description, and due date
-⏺️View Tasks: See all tasks with their details in a list format
-⏺️Edit Task: Modify existing tasks by updating any field
+⏺️Add Task: Create new tasks with title, description, and due date<br>
+⏺️View Tasks: See all tasks with their details in a list format<br>
+⏺️Edit Task: Modify existing tasks by updating any field<br>
 ⏺️Delete Task: Remove tasks with confirmation dialog
 
 <h3>State Management</h3>
 
 The application uses Redux Toolkit for state management with the following actions:
 
-⏺️addTask: Add a new task to the store
-⏺️updateTask: Update an existing task
+⏺️addTask: Add a new task to the store<br>
+⏺️updateTask: Update an existing task<br>
 ⏺️deleteTask: Remove a task from the store
 
 <h2>Getting Started</h2>
 
 <h3>Prerequisites</h3>
 
-⏺️Node.js (v14 or later)
+⏺️Node.js (v14 or later)<br>
 ⏺️npm or yarn
 
 <h3>Installation</h3>

@@ -1,50 +1,91 @@
-# React + TypeScript + Vite
+<h1>React Task Manager</h1>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A comprehensive task management application built with React, TypeScript, and Redux Toolkit.
 
-Currently, two official plugins are available:
+<h2>Features</h2>
+✅ Create new tasks with title, description, and due date
+✅ View all tasks in a clean, organized list
+✅ Edit existing tasks
+✅ Delete tasks
+✅ Task status tracking (completed/pending)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+<h2>Technologies Used</h2>
 
-## Expanding the ESLint configuration
+⏺️React 18 with TypeScript for UI components
+⏺️Vite for fast development and optimized builds
+⏺️Redux Toolkit for state management
+⏺️React Router for navigation between pages
+⏺️Ant Design for UI components
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+<h2>Project Structure</h2>
 
-- Configure the top-level `parserOptions` property like this:
+/src
+  /components        # Reusable UI components
+    task-form.tsx    # Form for adding/editing tasks
+    task-list.tsx    # Component to display list of tasks
+  /pages             # Route-level components
+    task-list.tsx    # Main page showing all tasks
+    add-task.tsx     # Page for adding and editing tasks
+  /store             # Redux store setup
+    index.ts         # Store configuration
+    taskSlice.ts     # Task-related reducers and actions
+  /types             # TypeScript type definitions
+    task.ts          # Task interface
+  /styles            # CSS files
+  App.tsx            # Main application component
+  main.tsx           # Application entry point
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+<h2>Core Functionality</h2>
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+<h3>Task Management</h3>
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+⏺️Add Task: Create new tasks with title, description, and due date
+⏺️View Tasks: See all tasks with their details in a list format
+⏺️Edit Task: Modify existing tasks by updating any field
+⏺️Delete Task: Remove tasks with confirmation dialog
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+<h3>State Management</h3>
+
+The application uses Redux Toolkit for state management with the following actions:
+
+⏺️addTask: Add a new task to the store
+⏺️updateTask: Update an existing task
+⏺️deleteTask: Remove a task from the store
+
+<h2>Getting Started</h2>
+
+<h3>Prerequisites</h3>
+
+⏺️Node.js (v14 or later)
+⏺️npm or yarn
+
+<h3>Installation</h3>
+
+1. Clone the repository:
+
+git clone [repository-url]
+cd my-task-manager
+
+2. Install dependencies:
+
+npm install
+# or
+yarn
+
+3. Start the development server:
+
+npm run dev
+# or
+yarn dev
+
+4. Open your browser and navigate to http://localhost:5173
+
+<h2>Building for Production</h2>
+
+To create an optimized production build:
+
+npm run build
+# or
+yarn build
+
+The build output will be located in the dist directory.

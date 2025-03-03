@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useSelector,useDispatch } from "react-redux";                                                                  //from Redux, allowing access to the global state.
 import { RootState } from "../store";                                                                       //the type of the Redux store's state
-import { Typography, Button,Card, message } from "antd";
+import { Typography, Button,Card, message, Tag } from "antd";
 import TaskList from "../components/task-list";
 import "../styles/task-list.css";
 import { deleteTask } from "../store/taskSlice";

@@ -30,8 +30,14 @@ const taskSlice = createSlice({
       // Filter out the task with the matching ID
       state.tasks = state.tasks.filter(task => task.id !== action.payload);                 //filter Method: The filter method creates a new array containing all tasks except the one with the id that matches action.payload.
     },
+    updateTaskStatus: (state, action: PayloadAction<number>) => {
+      const task = state.tasks.find(task => task.id === action.payload);    //``find`` method: The find method searches the tasks array for a task with the matching id. If the task is found, it is stored in the task variable. Here, action.payload is the task ID.
+      if (task) {
+        task.completed = !task.completed;                           //Toggles the completed status of the task. If the task is found, the completed status is toggled (true to false or false to true). taggle the status of complete od incomplete
+      }
   },
+}
 });
 
-export const { addTask, updateTask, deleteTask} = taskSlice.actions;
+export const { addTask, updateTask, deleteTask, updateTaskStatus} = taskSlice.actions;
 export default taskSlice.reducer;

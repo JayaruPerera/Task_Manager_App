@@ -3,15 +3,18 @@ import { EditOutlined, DeleteOutlined, FlagOutlined } from "@ant-design/icons";
 import "../styles/task-list-component.css";
 import { Link } from "react-router-dom";
 import { Task } from "../types/task";
+import { useDispatch } from "react-redux";
+import { updateTaskStatus } from "../store/taskSlice";
 
 interface TaskListProps {
-  tasks: Task[];
-  onDeleteTask: (id: number) => void;
+  tasks: Task[];                                                                  //// An array of Task objects (each task has properties like id, title, priority, etc.).
+  onDeleteTask: (id: number) => void;                                               //A function that takes a task ID as an argument and returns void. This function is called when a task is deleted.
 }
 
 const TaskList: React.FC<TaskListProps> = ({ tasks, onDeleteTask }) => {
+  const dispatch = useDispatch();                                                  //The useDispatch hook is used to dispatch actions to the Redux store.
   // Function to determine priority tag color
-  const getPriorityColor = (priority: "low" | "medium" | "high") => {
+  const getPriorityColor = (priority: "low" | "medium" | "high") => {           //This function takes a priority value as an argument and returns a color based on the priority level.
     switch (priority) {
       case "high":
         return "red";
@@ -40,7 +43,7 @@ const TaskList: React.FC<TaskListProps> = ({ tasks, onDeleteTask }) => {
               key={task.id} //Renders each task as a List.Item. Assigns a unique key to each task using task.id
               className="task-item"
             >
-              <Card
+              <Card                                                         //The Card component from Ant Design is used to display each task as a card.
                 className="task-item-card"
                 title={
                   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
@@ -53,6 +56,18 @@ const TaskList: React.FC<TaskListProps> = ({ tasks, onDeleteTask }) => {
                 extra={
                   <Space>
                     <Tag color="blue">Due: {task.dueDate}</Tag>
+
+                   {/* Toggle button for task completion */}
+                    <Button 
+                    type="default"
+                    onClick={() => dispatch(updateTaskStatus(task.id)) }
+                    icon={<EditOutlined />}
+                    size="small"
+                    >
+                      {task.completed ? "Pending":"Completed"}
+                      </Button>
+
+                    {/* Edit and Delete buttons */}
                     <Link to={`/edit-task/${task.id}`}>
                       <Button
                         type="primary"

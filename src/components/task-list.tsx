@@ -1,6 +1,6 @@
-import { Card, List, Tag, Button, Space, Popconfirm} from "antd";
-import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
-import "./task-list-component.css";
+import { Card, List, Tag, Button, Space, Popconfirm } from "antd";
+import { EditOutlined, DeleteOutlined, FlagOutlined } from "@ant-design/icons";
+import "../styles/task-list-component.css";
 import { Link } from "react-router-dom";
 import { Task } from "../types/task";
 
@@ -10,6 +10,19 @@ interface TaskListProps {
 }
 
 const TaskList: React.FC<TaskListProps> = ({ tasks, onDeleteTask }) => {
+  // Function to determine priority tag color
+  const getPriorityColor = (priority: "low" | "medium" | "high") => {
+    switch (priority) {
+      case "high":
+        return "red";
+      case "medium":
+        return "orange";
+      case "low":
+        return "green";
+      default:
+        return "blue";
+    }
+  };
 
   return (
     <div>
@@ -17,22 +30,33 @@ const TaskList: React.FC<TaskListProps> = ({ tasks, onDeleteTask }) => {
         <p>No tasks yet. Add your first task!</p>
       ) : (
         <List
-        className="task-items-list"
+          className="task-items-list"
           itemLayout="vertical"
-          dataSource={tasks}                                                                                  //The data source for the list is the tasks array passed as a prop.
-          renderItem={(task) => (                                                                             //The renderItem function is called for each task in the tasks array. It returns a List.Item component for each task.
-            <List.Item key={task.id}                                                                          //Renders each task as a List.Item. Assigns a unique key to each task using task.id
-            className="task-item">
-              <Card 
-              className="task-item-card"
-                title={task.title}
+          dataSource={tasks} //The data source for the list is the tasks array passed as a prop.
+          renderItem={(
+            task //The renderItem function is called for each task in the tasks array. It returns a List.Item component for each task.
+          ) => (
+            <List.Item
+              key={task.id} //Renders each task as a List.Item. Assigns a unique key to each task using task.id
+              className="task-item"
+            >
+              <Card
+                className="task-item-card"
+                title={
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                    <span>{task.title}</span>
+                    <Tag color={getPriorityColor(task.priority)} icon={<FlagOutlined />}>
+                      {task.priority.charAt(0).toUpperCase() + task.priority.slice(1)} Priority
+                    </Tag>
+                  </div>
+                  }
                 extra={
                   <Space>
                     <Tag color="blue">Due: {task.dueDate}</Tag>
                     <Link to={`/edit-task/${task.id}`}>
-                      <Button 
-                        type="primary" 
-                        icon={<EditOutlined />} 
+                      <Button
+                        type="primary"
+                        icon={<EditOutlined />}
                         size="small"
                       >
                         Edit
@@ -45,10 +69,10 @@ const TaskList: React.FC<TaskListProps> = ({ tasks, onDeleteTask }) => {
                       okText="Yes"
                       cancelText="No"
                     >
-                      <Button 
-                        type="primary" 
+                      <Button
+                        type="primary"
                         danger
-                        icon={<DeleteOutlined />} 
+                        icon={<DeleteOutlined />}
                         size="small"
                       >
                         Delete
@@ -58,11 +82,14 @@ const TaskList: React.FC<TaskListProps> = ({ tasks, onDeleteTask }) => {
                 }
               >
                 <p className="task-description">{task.description}</p>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}></div>
                 <p className="task-status">
-                  Status: {task.completed ? 
-                    <Tag color="green">Completed</Tag> : 
+                  Status:
+                  {task.completed ? (
+                    <Tag color="green">Completed</Tag>
+                  ) : (
                     <Tag color="volcano">Pending</Tag>
-                  }
+                  )}
                 </p>
               </Card>
             </List.Item>

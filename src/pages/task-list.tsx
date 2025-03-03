@@ -3,14 +3,14 @@ import { useSelector,useDispatch } from "react-redux";                          
 import { RootState } from "../store";                                                                       //the type of the Redux store's state
 import { Typography, Button,Card, message } from "antd";
 import TaskList from "../components/task-list";
-import "./task-list.css";
+import "../styles/task-list.css";
 import { deleteTask } from "../store/taskSlice";
 
 const { Title } = Typography;                                                                               //used for heading styles
 
 const TaskListPage = () => {
-  const dispatch = useDispatch();
-  const tasks = useSelector((state: RootState) => state.tasks.tasks); 
+  const dispatch = useDispatch();                                                                          //Sends messages (actions) to the Redux Store.
+  const tasks = useSelector((state: RootState) => state.tasks.tasks);                                     //Retrieves the list of tasks from the Redux store.//useSelector extracts tasks from state.tasks.tasks. state: represents the entire state of the Redux store.  tasks(this is a variable that holds the tasks array) will contain the list of tasks(this is an array) from the Redux store's state.
   
   const handleDeleteTask = (id: number) => {
     try {
@@ -24,7 +24,7 @@ const TaskListPage = () => {
   return (
     <div className="task-list-container">
       <div className="task-header">
-        <Title level={2}>Task List</Title>
+        <Title level={2}>Task List📃✒️</Title>
         <Link to="/add-task">
           <Button type="primary">Add New Task</Button>
         </Link>

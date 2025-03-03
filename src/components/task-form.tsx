@@ -1,18 +1,22 @@
 import React, { useEffect } from "react";
-import { Form, Input, Button, DatePicker } from "antd";
+import { Form, Input, Button, DatePicker, Select } from "antd";
 import dayjs from 'dayjs';
 import type { Dayjs } from "dayjs";                                           //a date library used to handle and format dates.The DatePicker component from Ant Design returns a Dayjs object.
+
+const { Option } = Select;
 
 interface TaskFormValues {                                                    //Represents the raw form input values captured directly from the form
   title: string;
   description: string;
   dueDate: Dayjs;
+  priority: 'low' | 'medium' | 'high';
 }
 
 interface TaskFormData {                                                     //Represents the processed form data with a string-formatted due date, ready to be passed to other parts of the application.               
   title: string;
   description: string;
   dueDate: string;
+  priority: 'low' | 'medium' | 'high';
 }
 
 interface TaskFormProps {                                                   //Defines the props that will be passed to the TaskForm component.
@@ -21,6 +25,7 @@ interface TaskFormProps {                                                   //De
     title: string;
     description: string;
     dueDate: string;
+    priority?: 'low' | 'medium' | 'high';
   };
   isSubmitting?: boolean;
   submitButtonText?: string;
@@ -48,6 +53,7 @@ const TaskForm: React.FC<TaskFormProps> = ({
       title: values.title,
       description: values.description,
       dueDate: values.dueDate.format("YYYY-MM-DD"),
+      priority: values.priority
     };
     onSubmit(taskData);                                                  //passing taskData to add-task.tsx
     // form.resetFields();
@@ -77,6 +83,19 @@ const TaskForm: React.FC<TaskFormProps> = ({
         rules={[{ required: true, message: "Please select a due date" }]}
       >
         <DatePicker format="YYYY-MM-DD" style={{ width: '100%' }} />
+      </Form.Item>
+
+      <Form.Item
+        name="priority"
+        label="Priority"
+        rules={[{ required: true, message: "Please select a priority" }]}
+        initialValue="medium"
+      >
+        <Select>
+          <Option value="low">Low</Option>
+          <Option value="medium">Medium</Option>
+          <Option value="high">High</Option>
+        </Select>
       </Form.Item>
 
       <Form.Item>

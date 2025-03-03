@@ -1,0 +1,43 @@
+.add-task-container {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .add-task-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    padding: 16px 24px;
+    background-color: rgba(151, 216, 241, 0.396);
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+  }
+  
+  .add-task-card {
+    border-radius: 0;
+    padding: 24px;
+  }
+  
+  .form-footer {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid #f0f0f0;
+  }
+  
+  .go-back-link {
+    display: inline-flex;
+    align-items: center;
+    color: #1890ff;
+    transition: color 0.3s;
+  }
+  
+  .go-back-link:hover {
+    color: #40a9ff;
+  }

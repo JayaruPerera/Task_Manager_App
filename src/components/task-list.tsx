@@ -105,6 +105,7 @@ const TaskList: React.FC<TaskListProps> = ({ tasks, onDeleteTask }) => {
                   ) : (
                     <Tag color="volcano">Pending</Tag>
                   )}
+                  Category: <Tag color="blue">{task.category}</Tag>
                 </p>
               </Card>
             </List.Item>

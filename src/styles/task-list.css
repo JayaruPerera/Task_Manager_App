@@ -13,6 +13,11 @@
     padding: 16px 24px;
     background-color: rgba(151, 216, 241, 0.396);
   }
+
+  .task-header-actions {
+    display: flex;
+    align-items: center;
+  }
   
   .task-card {
     border-radius: 0;

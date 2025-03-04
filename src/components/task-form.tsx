@@ -10,6 +10,7 @@ interface TaskFormValues {                                                    //
   description: string;
   dueDate: Dayjs;
   priority: 'low' | 'medium' | 'high';
+  category: string;
 }
 
 interface TaskFormData {                                                     //Represents the processed form data with a string-formatted due date, ready to be passed to other parts of the application.               
@@ -17,6 +18,7 @@ interface TaskFormData {                                                     //R
   description: string;
   dueDate: string;
   priority: 'low' | 'medium' | 'high';
+  category: string;
 }
 
 interface TaskFormProps {                                                   //Defines the props that will be passed to the TaskForm component.
@@ -26,6 +28,7 @@ interface TaskFormProps {                                                   //De
     description: string;
     dueDate: string;
     priority?: 'low' | 'medium' | 'high';
+    category: string;
   };
   isSubmitting?: boolean;
   submitButtonText?: string;
@@ -53,7 +56,8 @@ const TaskForm: React.FC<TaskFormProps> = ({
       title: values.title,
       description: values.description,
       dueDate: values.dueDate.format("YYYY-MM-DD"),
-      priority: values.priority
+      priority: values.priority,
+      category: values.category
     };
     onSubmit(taskData);                                                  //passing taskData to add-task.tsx
     // form.resetFields();
@@ -97,6 +101,20 @@ const TaskForm: React.FC<TaskFormProps> = ({
           <Option value="high">High</Option>
         </Select>
       </Form.Item>
+
+    <Form.Item
+    name="category"
+    label="category"
+    rules={[{required:true, message: "Please select a category"}]}
+    initialValue="personal"
+    >
+      <Select placeholder="Select category">
+        <Option value="personal">Personal</Option>
+        <Option value="work">Work</Option>
+        <Option value="shopping">Shopping</Option>
+          <Option value="other">Other</Option>
+        </Select>
+        </Form.Item>
 
       <Form.Item>
         <Button type="primary" htmlType="submit" loading={isSubmitting}>

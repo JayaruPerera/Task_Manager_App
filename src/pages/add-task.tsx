@@ -14,6 +14,7 @@ interface TaskFormData {                                                  //Defi
   title: string;                                                       //(required)                          
   description: string;                                                  //(required)    
   dueDate?: string | null;                                            //(optional)                        
+  category: string;
   priority?: 'low' | 'medium' | 'high';                                          //(optional)  
 }
 
@@ -38,7 +39,8 @@ const AddTask = () => {
         title: task.title,
         description: task.description,
         dueDate: task.dueDate,
-        priority: task.priority
+        priority: task.priority,
+        category: task.category
       });
     }
   }, [isEditing, task]);                                                //Dependency Array-  [isEditing, task]: The dependency array specifies when the effect should run. In this case, the effect will run whenever isEditing or task changes.

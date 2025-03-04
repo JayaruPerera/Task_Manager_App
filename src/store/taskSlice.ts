@@ -36,6 +36,7 @@ const taskSlice = createSlice({
         task.completed = !task.completed;                           //Toggles the completed status of the task. If the task is found, the completed status is toggled (true to false or false to true). taggle the status of complete od incomplete
       }
   },
+  
 }
 });
 
